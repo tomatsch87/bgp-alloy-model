@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view>
+
+<defaultnode/>
+
+<defaultedge/>
+
+<node>
+   <type name="Int"/>
+   <type name="String"/>
+   <type name="univ"/>
+   <type name="seq/Int"/>
+   <type name="autonomous_system/signatures/Active"/>
+   <type name="autonomous_system/signatures/AS"/>
+   <type name="autonomous_system/signatures/ASState"/>
+   <type name="autonomous_system/signatures/BGPMessage"/>
+   <type name="autonomous_system/signatures/Connect"/>
+   <type name="autonomous_system/signatures/ConnectionState"/>
+   <type name="autonomous_system/signatures/Established"/>
+   <type name="autonomous_system/signatures/Idle"/>
+   <type name="autonomous_system/signatures/MessageQueue"/>
+   <type name="autonomous_system/signatures/RoutingTable"/>
+   <type name="autonomous_system/signatures/Update"/>
+   <set name="$processMessage_msg" type="autonomous_system/signatures/Message"/>
+   <set name="$propagateRoutes_a" type="autonomous_system/signatures/AS"/>
+</node>
+
+<node hideunconnected="yes">
+   <type name="autonomous_system/signatures/Message"/>
+   <type name="autonomous_system/signatures/Prefix"/>
+</node>
+
+<node visible="no">
+   <type name="autonomous_system/signatures/BGPConnection"/>
+</node>
+
+<node visible="no" hideunconnected="yes">
+   <type name="autonomous_system/signatures/ASN"/>
+   <type name="autonomous_system/signatures/MessageType"/>
+   <type name="autonomous_system/signatures/State"/>
+</node>
+
+<node visible="yes" hideunconnected="yes">
+   <type name="autonomous_system/signatures/RoutingEntry"/>
+</node>
+
+<edge attribute="no">
+   <relation name="to"> <type name="autonomous_system/signatures/Message"/> <type name="autonomous_system/signatures/AS"/> </relation>
+</edge>
+
+<edge style="inherit" attribute="no">
+   <relation name="entries"> <type name="autonomous_system/signatures/RoutingTable"/> <type name="autonomous_system/signatures/RoutingEntry"/> </relation>
+</edge>
+
+<edge visible="no">
+   <relation name="$initRoutingTable_a"> <type name="autonomous_system/signatures/RoutingEntry"/> <type name="autonomous_system/signatures/AS"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="advertisedRoute"> <type name="autonomous_system/signatures/Message"/> <type name="autonomous_system/signatures/RoutingEntry"/> </relation>
+   <relation name="asn"> <type name="autonomous_system/signatures/AS"/> <type name="autonomous_system/signatures/ASN"/> </relation>
+   <relation name="ASPath"> <type name="autonomous_system/signatures/RoutingEntry"/> <type name="seq/Int"/> <type name="autonomous_system/signatures/ASN"/> </relation>
+   <relation name="connectionState"> <type name="autonomous_system/signatures/BGPConnection"/> <type name="autonomous_system/signatures/ConnectionState"/> </relation>
+   <relation name="messages"> <type name="autonomous_system/signatures/MessageQueue"/> <type name="seq/Int"/> <type name="autonomous_system/signatures/Message"/> </relation>
+   <relation name="nextHop"> <type name="autonomous_system/signatures/RoutingEntry"/> <type name="autonomous_system/signatures/AS"/> </relation>
+   <relation name="prefix"> <type name="autonomous_system/signatures/AS"/> <type name="autonomous_system/signatures/Prefix"/> </relation>
+   <relation name="prefix"> <type name="autonomous_system/signatures/RoutingEntry"/> <type name="autonomous_system/signatures/Prefix"/> </relation>
+   <relation name="state"> <type name="autonomous_system/signatures/AS"/> <type name="autonomous_system/signatures/ASState"/> </relation>
+   <relation name="type"> <type name="autonomous_system/signatures/Message"/> <type name="autonomous_system/signatures/MessageType"/> </relation>
+</edge>
+
+</view>
+
+</alloy>

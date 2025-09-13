@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view>
+
+<defaultnode/>
+
+<defaultedge/>
+
+<node>
+   <type name="Int"/>
+   <type name="String"/>
+   <type name="univ"/>
+   <type name="seq/Int"/>
+   <type name="signatures/Active"/>
+   <type name="signatures/AS"/>
+   <type name="signatures/Connect"/>
+   <type name="signatures/Established"/>
+   <type name="signatures/Idle"/>
+   <type name="signatures/MessageQueue"/>
+   <type name="signatures/Update"/>
+   <set name="$mq" type="signatures/MessageQueue"/>
+   <set name="$mq&apos;" type="signatures/MessageQueue"/>
+   <set name="$mq&apos;&apos;" type="signatures/MessageQueue"/>
+   <set name="$msg" type="signatures/Message"/>
+</node>
+
+<node hideunconnected="yes">
+   <type name="signatures/ASN"/>
+   <type name="signatures/ASState"/>
+   <type name="signatures/ConnectionState"/>
+   <type name="signatures/RoutingEntry"/>
+   <type name="signatures/State"/>
+</node>
+
+<node visible="no">
+   <type name="signatures/BGPConnection"/>
+   <type name="signatures/Message"/>
+   <type name="signatures/MessageType"/>
+   <type name="signatures/Prefix"/>
+   <type name="signatures/RoutingTable"/>
+</node>
+
+<node visible="yes">
+   <type name="signatures/BGPMessage"/>
+</node>
+
+<edge attribute="no">
+   <relation name="messageQueue"> <type name="signatures/AS"/> <type name="signatures/MessageQueue"/> </relation>
+</edge>
+
+<edge visible="no">
+   <relation name="neighbors"> <type name="signatures/AS"/> <type name="signatures/AS"/> </relation>
+</edge>
+
+<edge visible="no" attribute="no">
+   <relation name="prefix"> <type name="signatures/RoutingEntry"/> <type name="signatures/Prefix"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="advertisedRoute"> <type name="signatures/Message"/> <type name="signatures/RoutingEntry"/> </relation>
+   <relation name="asn"> <type name="signatures/AS"/> <type name="signatures/ASN"/> </relation>
+   <relation name="ASPath"> <type name="signatures/RoutingEntry"/> <type name="seq/Int"/> <type name="signatures/ASN"/> </relation>
+   <relation name="messages"> <type name="signatures/MessageQueue"/> <type name="seq/Int"/> <type name="signatures/Message"/> </relation>
+   <relation name="nextHop"> <type name="signatures/RoutingEntry"/> <type name="signatures/AS"/> </relation>
+   <relation name="prefix"> <type name="signatures/AS"/> <type name="signatures/Prefix"/> </relation>
+   <relation name="routingTable"> <type name="signatures/AS"/> <type name="signatures/RoutingTable"/> </relation>
+   <relation name="state"> <type name="signatures/AS"/> <type name="signatures/ASState"/> </relation>
+</edge>
+
+</view>
+
+</alloy>
